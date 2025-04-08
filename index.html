@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goosle Search</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .search-container {
+            margin-top: 4rem;
+            padding: 20px;
+            width: 80%;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .search-container img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        input[type="text"] {
+            width: 60%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <img src="goose.png" alt="Goose Image">
+        <h1>Goosle Search</h1>
+        <form action="https://www.google.com/search" method="get">
+            <input type="text" name="q" placeholder="Search the web..." required>
+            <br>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <footer>
+        <p>Goosle Search: For The Honks</p>
+        <p>Do we need copyright?</p>
+    </footer>
+</body>
+</html>
