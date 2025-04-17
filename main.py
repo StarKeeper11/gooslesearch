@@ -5,6 +5,7 @@ from firebase_admin import *
 from google.cloud.firestore_v1.base_query import FieldFilter
 from flask import *
 from flask_cors import CORS
+import json
 
 # Use a service account.
 cred = credentials.Certificate('service-account.json')
@@ -32,5 +33,23 @@ app = Flask(__name__)
 
 @app.route("/getusername", methods=["POST"])
 def getUsernameRoute():
+    print("running getUsernameRoute")
+    data = request.json
+    print("data get")
+    if not data or 'id' not in data:
+        print("error w/ data")
+        return jsonify({"status": "error", "username": "..."})
+
+    username = str(data['id'])
+
+    query = getUsername(id)
+
+    if query:
+        return jsonify({"status": "success", "username": str(query)})
+    else:
+        return jsonify({"status": "error", "username": "..."})
+
     return True
-print(getUsername(1))
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
