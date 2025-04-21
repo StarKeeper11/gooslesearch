@@ -10,9 +10,12 @@ import json
 # Use a service account.
 cred = credentials.Certificate('service-account.json')
 
-app = firebase_admin.initialize_app(cred)
+fireapp = firebase_admin.initialize_app(cred)
 
 db = firestore.client()
+
+flaskapp = Flask(__name__)
+CORS(flaskapp)
 
 user_ref = db.collection('users')
 
@@ -29,9 +32,7 @@ def getUsername(id):
     else:
         return None
 
-app = Flask(__name__)
-
-@app.route("/getusername", methods=["POST"])
+@flaskapp.route("/getusername", methods=["POST"])
 def getUsernameRoute():
     print("running getUsernameRoute")
     data = request.json
@@ -40,16 +41,17 @@ def getUsernameRoute():
         print("error w/ data")
         return jsonify({"status": "error", "username": "..."})
 
-    username = str(data['id'])
+    id = str(data['id'])
+    print(id)
 
     query = getUsername(id)
+    print(query)
 
     if query:
         return jsonify({"status": "success", "username": str(query)})
     else:
         return jsonify({"status": "error", "username": "..."})
 
-    return True
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    flaskapp.run(port="4321")
+    print("running")
